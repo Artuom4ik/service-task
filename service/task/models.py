@@ -11,6 +11,16 @@ class Task(models.Model):
         ('completed', 'Выполнена'),
     )
 
+    title = models.CharField(
+        max_length=255,
+        verbose_name="Название"
+    )
+
+    description = models.TextField(
+        blank=True,
+        verbose_name="Описание"
+    )
+
     client = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
