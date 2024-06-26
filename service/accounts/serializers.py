@@ -27,6 +27,12 @@ class UserSerializer(serializers.ModelSerializer):
             'middle_name': {'required': False},
         }
 
+    def validate_role(self, value):
+        if self.instance and self.instance.role != value:
+            raise serializers.ValidationError("You cannot change the user role")
+
+        return value
+
     def create(self, validated_data):
         user = Users.objects.create_user(
             username=validated_data['email'],

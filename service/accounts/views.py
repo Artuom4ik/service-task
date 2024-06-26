@@ -1,18 +1,18 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework.permissions import IsAuthenticated
 
 from .serializers import UserSerializer, MyTokenObtainPairSerializer
+from .permissions import IsClient, IsEmployee
 from .models import Users
 
 
 class RegisterView(generics.CreateAPIView):
     queryset = Users.objects.all()
-    permission_classes = (AllowAny,)
+    permission_classes = (AllowAny, IsEmployee)
     serializer_class = UserSerializer
 
     def post(self, request, *args, **kwargs):
@@ -51,3 +51,23 @@ class LogoutView(APIView):
             return Response(
                 {'error': error},
                 status=status.HTTP_400_BAD_REQUEST)
+
+
+class CurrentUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+
+
+class EmployeeListView(generics.ListCreateAPIView):
+    queryset = Users.objects.filter(role='employee')
+    serializer_class = UserSerializer
+    permission_classes = [IsClient]
+
+
+class ClientListView(generics.ListCreateAPIView):
+    queryset = Users.objects.filter(role='client')
+    serializer_class = UserSerializer
+    permission_classes = [IsEmployee]
