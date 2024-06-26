@@ -7,11 +7,11 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated
 
 from .serializers import UserSerializer, MyTokenObtainPairSerializer
-from .models import User
+from .models import Users
 
 
 class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
+    queryset = Users.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = UserSerializer
 

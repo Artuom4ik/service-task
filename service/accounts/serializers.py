@@ -1,12 +1,12 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from .models import User
+from .models import Users
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = Users
         fields = (
             'id',
             'email',
@@ -18,11 +18,17 @@ class UserSerializer(serializers.ModelSerializer):
             'role'
         )
         extra_kwargs = {
+            'email': {'required': True},
             'password': {'write_only': True},
+            'first_name': {'required': True},
+            'last_name': {'required': True},
+            'role': {'required': True},
+            'phone_number': {'required': True},
+            'middle_name': {'required': False},
         }
 
     def create(self, validated_data):
-        user = User.objects.create_user(
+        user = Users.objects.create_user(
             username=validated_data['email'],
             password=validated_data['password'],
             email=validated_data['email'],
@@ -41,8 +47,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
 
-        # Add custom claims
         token['username'] = user.username
-        token['role'] = user.role
+        token['password'] = user.password
 
         return token
