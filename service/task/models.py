@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from accounts.models import User
+from accounts.models import Users
 
 
 class Task(models.Model):
@@ -22,14 +22,14 @@ class Task(models.Model):
     )
 
     client = models.ForeignKey(
-        User,
+        Users,
         on_delete=models.CASCADE,
         limit_choices_to={'role': 'client'},
         related_name='client_task',
         verbose_name="Заказчик"
     )
     employee = models.ForeignKey(
-        User,
+        Users,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
