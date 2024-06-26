@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 
 
-class User(User):
+class Users(User):
     ROLE = {
         ("employee", "Сотрудник"),
         ("client", "Заказчик")
