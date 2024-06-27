@@ -29,12 +29,12 @@ ___
 
 ___
 >### Содержание
-* [Системные требования]()
-* [Запуск сервиса]()
-* [Запуск сервиса с помощью docker-compose]()
-* [Переменные окружения]()
-* [Эндпоинты и их функции]()
-* [Примеры использования]()
+* [Системные требования](https://github.com/Artuom4ik/service-task?tab=readme-ov-file#системные-требования)
+* [Запуск сервиса](https://github.com/Artuom4ik/service-task?tab=readme-ov-file#запуск-сервиса)
+* [Запуск сервиса с помощью docker-compose](https://github.com/Artuom4ik/service-task?tab=readme-ov-file#запуск-сервиса-с-помощью-docker-compose)
+* [Переменные окружения](https://github.com/Artuom4ik/service-task?tab=readme-ov-file#переменные-окружения)
+* [Эндпоинты и их функции](https://github.com/Artuom4ik/service-task?tab=readme-ov-file#эндпоинты-и-их-функции)
+* [Примеры использования](https://github.com/Artuom4ik/service-task?tab=readme-ov-file#примеры-использования)
 ___
 
 >### Системные требования
@@ -151,7 +151,7 @@ docker-compose up --build
 ```
 docker-compose up --build
 ```
-* Если `docker-compose` запустился попробуйте добавить префикс `sudo`:
+* Если `docker-compose` не запустился попробуйте добавить префикс `sudo`:
 ```bash
 sudo docker-compose up --build
 ```
