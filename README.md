@@ -78,13 +78,34 @@ source myvenv/bin/activate
 ```
 pip install -r requirements.txt
 ```
-- Выполните миграции базы данных командой 
-```
+- Выполните миграции базы данных командой
+
+
+`Для Linux` 
+
+```bash
 python3 manage.py migrate
 ```
-- Запустите сервер командой 
+
+`Для Windows`
+
+```bash
+python manage.py migrate
 ```
+
+- Запустите сервер командой
+
+
+`Для Linux`
+
+```bash
 python3 manage.py runserver
+```
+
+`Для Windows`
+
+```bash
+python manage.py runserver
 ```
 
 После этого сервис будет запущен и будет доступен по такому адресу [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
